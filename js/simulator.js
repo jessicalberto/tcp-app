@@ -19,13 +19,13 @@ function makeBorders(width, height) {
 	return graphics;
 }
 
-function makeGreenPackets() {
+function makePackets() {
 	var container = new PIXI.Container();
 
 	// Create 5 green rectangles
 	var graphics = new PIXI.Graphics();
-	graphics.lineStyle(1, 0xFF500, 1);
-	graphics.beginFill(0xFF500, .5);
+	graphics.lineStyle(1, 0x00FFFF, 1);
+	graphics.beginFill(0x00FFFF, .5);
 
 	var NUM_PACKETS = 5;
 	for (var i = 0; i < NUM_PACKETS; i++) {
@@ -35,13 +35,13 @@ function makeGreenPackets() {
 	return container;
 }
 
-function makeRedPackets() {
+function makeACK() {
 	var container = new PIXI.Container();
 
 	// Create 5 red rectangles
 	var graphics = new PIXI.Graphics();
-	graphics.lineStyle(1, 0xFF0000, 1);
-	graphics.beginFill(0xFF0000, .5);
+	graphics.lineStyle(1, 0xFF500, 1);
+	graphics.beginFill(0xFF500, .5);
 
 	var NUM_PACKETS = 5;
 	for (var i = 0; i < NUM_PACKETS; i++) {
@@ -64,7 +64,7 @@ function initSimulator(width, height) {
 	var borders = makeBorders(width, height);
 	app.stage.addChild(borders);
 
-	var packets = makeGreenPackets(app);
+	var packets = makePackets(app);
 	var angle = getPacketAngle(width*.9, height);
 	var xMultiplier = 1.0 / Math.tan(angle);
 
@@ -73,34 +73,55 @@ function initSimulator(width, height) {
 	packets.y = height-100;
 	app.stage.addChild(packets);
 
-// TESTING
-	var packets2 = makeRedPackets(app);
+	// Add ACK - Change Color when received
+	var packets2 = makeACK(app);
 	var angle2 = getPacketAngle(width*.9, height);
 	var xMultiplier2 = 1.0 / Math.tan(angle);
 
-	packets2.rotation = -1 * angle;
-	packets2.x = 100; // Place at bottom left corner of canvas
-	packets2.y = height-100;
-//app.stage.addChild(packets2);
-//// END TESTING
+	packets2.rotation =  angle;
+	packets2.x = -50; // Initialize Off the Grid
+	packets2.y = -50;
+	app.stage.addChild(packets2);
+
 
 	var packetsHeight = Math.sin(angle) * packets.width;
 
 	var speed = -5; // UP (y decrements)
 
+	var direction = 1; // 1 = UP 0 = DOWN
+
 	app.ticker.add(function(delta) {
 		var deltaY = (speed * delta);
 
-		var newY = packets.y + deltaY;
-		var newX = packets.x + Math.abs(deltaY * xMultiplier);
+		if (direction == 1){
+			var newY = packets.y + deltaY;
+			var newX = packets.x + Math.abs(deltaY * xMultiplier);
 
-		if (newY < -40 || newY > height) {
-			speed *= -1;
-			packets.rotation *= -1;
+			if (newY < -40) {
+				speed *= -1;
+				packets2.x = newX;
+				packets2.y = newY;
+				direction = 0;
+			}
+
+			packets.x = newX;
+			packets.y = newY;
 		}
 
-		packets.x = newX;
-		packets.y = newY;
+		if (direction == 0){
+			var newY2 = packets2.y + deltaY;
+			var newX2 = packets2.x + Math.abs(deltaY * xMultiplier);
+
+			if (newY2 > height) {
+				speed *= -1;
+				packets.x = newX2;
+				packets.y = newY2;
+				direction = 1;
+			}
+
+			packets2.x = newX2;
+			packets2.y = newY2;
+		}
 
 
 	});
