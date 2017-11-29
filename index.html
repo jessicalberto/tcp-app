@@ -42,6 +42,34 @@
           <div class="col-xs-12 col-sm-5">
             <div id="options-box">
 
+
+              <div align = "right">
+                <h3>Display Options</h3>
+                    <font color = "FFA505">
+                    <label>Select a scenario to be demonstrated.</label>
+                    </font>
+                <form action = "js/simulator.js">
+                    <fieldset>
+                        <select id = "selection"
+                          size = "5">
+                         <option value = "pl">Packet Loss</option>
+                         <option value = "Congestion Control">Congestion Control</option>
+                         <option value = "ACK Loss">ACK Loss</option>
+                         <option value = "3-Way Handshake">3-Way Handshake</option>
+                         <option value = "Connection Close">Connection Close</option>
+                        </select>
+                        <button type = "button"
+                          onclick = "showChoices()">
+                         Submit
+                        </button>
+                    </fieldset>
+               </form>
+              </div>
+
+              
+              <input type="button" value="Start Simulation" id = "startButton" onclick = "start();"/>
+
+
             </div>
           </div>
         </div>

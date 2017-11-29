@@ -60,7 +60,7 @@ function getPacketRotation(width, height) {
 
 function initSimulator(element) {
 
-	// Size the parent element, and then 
+	// Size the parent element, and then
 	width = element.offsetWidth;
 	height = element.offsetHeight;
 
@@ -96,13 +96,20 @@ function initSimulator(element) {
 	verticalMultiplier = rotatedPacketHeight/rotatedPacketWidth;
 	packets = senderPackets;
 
-	start();
 }
 
 function start() {
+	numTransmissions = 0;
+	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
+	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
+	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
+	receiverPackets.y = transmissionHeightOffset;
+
 	app.ticker.add(packetMover); // Defined in simulator-action.js
+	document.getElementById("startButton").disabled = true;
 }
 
 function stop() {
 	app.ticker.remove(packetMover); // Defined in simulator-action.js
+	document.getElementById("startButton").disabled = false;
 }
