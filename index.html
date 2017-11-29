@@ -7,37 +7,47 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
         <link rel="stylesheet" href="css/normalize.css">
+
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/simulator.js"></script>
+        <script src="js/colors.js"></script>
+        <script src="js/simulator-action.js"></script>
+        <script src="js/simulator-setup.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+
+
     </head>
     <body>
 
-        <h1>EC 440 - TCP Simulator</h1>
+      <div class="container-fluid">
 
-
-        <input type="button" value="start (needs to be fixed)"/>
-        <div align="center">
-          <font color="#FFA500">
-            <h4> Receiver </h4>
-          </font>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <h1>EC 440 - TCP Simulator</h1>
+          </div>
         </div>
 
-        <script src="js/main.js"></script>
+        <div class="row">
+          <div class="col-xs-12 offset-sm-1 col-sm-5">
+            <div id="simulation-box">
 
-        <div align="center">
-          <font color="#FFA500">
-            <h4> Sender </h4>
-          </font>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-5">
+            <div id="options-box">
+
+            </div>
+          </div>
         </div>
 
-      <h3> Timeout Window: </h3>
-      <h3> ACK Received:</h3>
+      </div>
 
+      <script src="js/main.js"></script> <!-- Initalize at the end of the body tag! -->
     </body>
 </html>
