@@ -81,13 +81,9 @@ function initSimulator(element) {
 	transmissionHeightOffset = height/6 - rotatedPacketHeight;
 
 	senderPackets.rotation = rotation;
-	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
-	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	app.stage.addChild(senderPackets);
 
 	receiverPackets.rotation = -1 * rotation;
-	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
-	receiverPackets.y = transmissionHeightOffset;
 	app.stage.addChild(receiverPackets);
 
 	// defined in simulator-action.js
@@ -96,20 +92,27 @@ function initSimulator(element) {
 	verticalMultiplier = rotatedPacketHeight/rotatedPacketWidth;
 	packets = senderPackets;
 
+	resetPackets();
 }
 
-function start() {
+function resetPackets() {
 	numTransmissions = 0;
 	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
 	receiverPackets.y = transmissionHeightOffset;
+}
+
+function start() {
+	flag = document.getElementsByName("flag")[0].value;
+	console.log(flag);
 
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
 }
 
 function stop() {
+	resetPackets();
 	app.ticker.remove(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = false;
 }

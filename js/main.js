@@ -21,7 +21,8 @@ var app = null,
 	senderStart = 0,
 	receiverStart = 0,
 	packets = null,
-	numTransmissions = 0;
+	numTransmissions = 0
+	flag = null;
 
 var simulationBox = document.getElementById("simulation-box");
 initSimulator(simulationBox);

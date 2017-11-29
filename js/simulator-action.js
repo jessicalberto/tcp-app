@@ -12,7 +12,6 @@ function packetMover(delta) {
 		packets.y = current - rotatedPacketHeight;
 
 		numTransmissions++;
-		console.log(numTransmissions);
 
 	} else if (direction == RECEIVER && packets.x < -1 * rotatedPacketWidth - 20) {
 
@@ -23,15 +22,29 @@ function packetMover(delta) {
 		packets.y = current - 2 * rotatedPacketHeight;
 
 		numTransmissions++;
-		console.log(numTransmissions);
 
 	} else {
 		packets.x += deltaX;
 		packets.y += deltaY;
+
+		if (flag == "PACKET_LOSS"
+			&& direction == SENDER
+			&& packets.x >= width * .5
+			&& numTransmissions == 2) {
+			packetLoss();
+		}
+
+
 	}
 
 	if (numTransmissions == 6) {
 		stop();
 	}
 
+}
+
+// TODO do this better!
+function packetLoss() {
+	stop();
+	alert("Packet lost!");
 }

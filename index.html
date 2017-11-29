@@ -40,36 +40,25 @@
             </div>
           </div>
           <div class="col-xs-12 col-sm-5">
+
             <div id="options-box">
-
-
-              <div align = "right">
+              <div id="display-options">
                 <h3>Display Options</h3>
-                    <font color = "FFA505">
-                    <label>Select a scenario to be demonstrated.</label>
-                    </font>
-                <form action = "js/simulator.js">
-                    <fieldset>
-                        <select id = "selection"
-                          size = "5">
-                         <option value = "pl">Packet Loss</option>
-                         <option value = "Congestion Control">Congestion Control</option>
-                         <option value = "ACK Loss">ACK Loss</option>
-                         <option value = "3-Way Handshake">3-Way Handshake</option>
-                         <option value = "Connection Close">Connection Close</option>
-                        </select>
-                        <button type = "button"
-                          onclick = "showChoices()">
-                         Submit
-                        </button>
-                    </fieldset>
+                    <p>Select a scenario to be demonstrated.</p>
+                    <form>
+                      <select id="selection" size="6" name="flag">
+                        <option value="NORMAL_OPERATION" selected>Normal Operation</option>
+                        <option value="PACKET_LOSS">Packet Loss</option>
+                        <option value="CONGESTION_CONTROL">Congestion Control</option>
+                        <option value="ACK_LOSS">ACK Loss</option>
+                        <option value="3_WAY_HANDSHAKE">3-Way Handshake</option>
+                        <option value="CONNECTION_CLOSE">Connection Close</option>
+                      </select>
+                      <button type="button" id="startButton"  onclick="start();">
+                       Start Simulation
+                      </button>
                </form>
               </div>
-
-              
-              <input type="button" value="Start Simulation" id = "startButton" onclick = "start();"/>
-
-
             </div>
           </div>
         </div>
