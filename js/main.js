@@ -5,4 +5,5 @@ var w = window,
     WIDTH = w.innerWidth || e.clientWidth || g.clientWidth,
     HEIGHT = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
-initSimulator(WIDTH*.7, 500);
+var simulationBox = document.getElementById("simulation-box");
+initSimulator(simulationBox);

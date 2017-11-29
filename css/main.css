@@ -19,6 +19,12 @@ html {
     text-align: center;
 }
 
+body {
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+}
+
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -101,11 +107,26 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+h1 {
+    text-align: center;
+}
+
+body {
+    height: 100vh;
+}
 
 
+#simulation-box {
+    height: 80vh;
+    width: 100%;
+    background-color: red;
+}
 
-
-
+#options-box {
+    height: 80vh;
+    width: 100%;
+    background-color: blue;
+}
 
 
 
