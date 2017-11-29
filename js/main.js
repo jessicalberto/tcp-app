@@ -5,5 +5,23 @@ var w = window,
     WIDTH = w.innerWidth || e.clientWidth || g.clientWidth,
     HEIGHT = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
+var app = null,
+	width = null,
+	height = null,
+	senderPackets = null,
+	receiverPackets = null,
+	rotatedPacketHeight = 0,
+	rotatedPacketWidth = 0,
+	transmissionHeightOffset = 0,
+	SENDER = 1,
+	RECEIVER = -1,
+	speed = 5,
+	direction = SENDER,
+	verticalMultiplier = null,
+	senderStart = 0,
+	receiverStart = 0,
+	packets = null,
+	numTransmissions = 0;
+
 var simulationBox = document.getElementById("simulation-box");
 initSimulator(simulationBox);

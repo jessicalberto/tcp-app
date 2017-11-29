@@ -61,75 +61,48 @@ function getPacketRotation(width, height) {
 function initSimulator(element) {
 
 	// Size the parent element, and then 
-	var width = element.offsetWidth, height = element.offsetHeight
-	var app = new PIXI.Application(width, height, {backgroundColor : 0x222222, antialias: true});
+	width = element.offsetWidth;
+	height = element.offsetHeight;
+
+	app = new PIXI.Application(width, height, {backgroundColor : 0x222222, antialias: true});
 	element.parentElement.replaceChild(app.view, element);
 
 	app.stage.addChild( makeBorders(width, height) );
 
-	var senderPackets = getSenderPackets();
-	var receiverPackets = getReceiverPackets();
+	senderPackets = getSenderPackets();
+	receiverPackets = getReceiverPackets();
 
 	var packetHeight = senderPackets.height,
 		packetWidth = senderPackets.width;
 
-	var rotation = getPacketRotation(width, height),
-		rotatedHeight = Math.sin(rotation) * senderPackets.width,
-		rotateWidth = Math.cos(rotation) * senderPackets.width;
-
-	var senderStart = 0,
-		receiverStart = height/6;
+	var rotation = getPacketRotation(width, height * .9);
+	rotatedPacketHeight = Math.sin(rotation) * senderPackets.width;
+	rotatedPacketWidth = Math.cos(rotation) * senderPackets.width;
+	transmissionHeightOffset = height/6 - rotatedPacketHeight;
 
 	senderPackets.rotation = rotation;
-	senderPackets.x = -1 * packetWidth; // Place at bottom left corner of canvas
-	senderPackets.y = (-1 * rotatedHeight) - packetHeight;
+	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
+	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	app.stage.addChild(senderPackets);
 
 	receiverPackets.rotation = -1 * rotation;
-	receiverPackets.x = 100; // Initialize Off the Grid
-	receiverPackets.y = 100;
+	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
+	receiverPackets.y = transmissionHeightOffset;
 	app.stage.addChild(receiverPackets);
 
-	// app.ticker.add(function(delta) {
-	// 	var deltaY = (speed * delta);
+	// defined in simulator-action.js
+	senderStart = 0,
+	receiverStart = transmissionHeightOffset;
+	verticalMultiplier = rotatedPacketHeight/rotatedPacketWidth;
+	packets = senderPackets;
 
-	// 	if (direction == 1){
-	// 		var newY = packets.y + deltaY;
-	// 		var newX = packets.x + Math.abs(deltaY * xMultiplier);
-
-	// 		if (newY < -40) {
-	// 			speed *= -1;
-	// 			packets2.x = newX;
-	// 			packets2.y = newY;
-	// 			direction = 0;
-	// 		}
-
-	// 		packets.x = newX;
-	// 		packets.y = newY;
-	// 	}
-
-	// 	if (direction == 0){
-	// 		var newY2 = packets2.y + deltaY;
-	// 		var newX2 = packets2.x + Math.abs(deltaY * xMultiplier);
-
-	// 		if (newY2 > height) {
-	// 			speed *= -1;
-	// 			packets.x = newX2;
-	// 			packets.y = newY2;
-	// 			direction = 1;
-	// 		}
-
-	// 		packets2.x = newX2;
-	// 		packets2.y = newY2;
-	// 	}
-
-
-	// });
+	start();
 }
 
-var speed = 5; // RIGHT (x increases)
-var direction = 1; // 1 = RIGHt 0 = LEFT
+function start() {
+	app.ticker.add(packetMover); // Defined in simulator-action.js
+}
 
-function ticker() {
-
+function stop() {
+	app.ticker.remove(packetMover); // Defined in simulator-action.js
 }
