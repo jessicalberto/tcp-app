@@ -9,3 +9,4 @@ Our animation can demonstrate the following:
 2. ACK Loss
 3. Congestion Control
 4. 3-Way Handshake
+5. Connection Close
