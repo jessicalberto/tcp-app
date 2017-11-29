@@ -21,6 +21,33 @@ function makeBorders(width, height) {
 	return graphics;
 }
 
+function makeText(width, height) {
+	var style = new PIXI.TextStyle({
+	    fontFamily: 'Arial',
+	    fontSize: 36,
+	    fontWeight: 'bold',
+	    fill: '#ffffff20', // gradient
+	});
+
+	var sender = new PIXI.Text('SENDER', style);
+	sender.anchor.set(.5, .5);
+	sender.rotation = Math.PI / 2;
+
+	sender.anchor.set(.5, 1);
+	sender.x = 10;
+	sender.y = height/2;
+
+	var receiver = new PIXI.Text('RECEIVER', style);
+	receiver.anchor.set(.5, .5);
+	receiver.rotation = -1 * Math.PI / 2;
+
+	receiver.anchor.set(.5, 1);
+	receiver.x = width - 10;
+	receiver.y = height/2;
+
+	return [sender, receiver];
+}
+
 function makePackets(graphics) {
 
 	var NUM_PACKETS = 12;
@@ -68,6 +95,8 @@ function initSimulator(element) {
 	element.parentElement.replaceChild(app.view, element);
 
 	app.stage.addChild( makeBorders(width, height) );
+
+	app.stage.addChild( ...makeText(width, height) );
 
 	senderPackets = getSenderPackets();
 	receiverPackets = getReceiverPackets();
