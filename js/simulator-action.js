@@ -35,7 +35,7 @@ function packetMover(delta) {
 		}
 		if (flag == "3_WAY_HANDSHAKE"
 			&& numTransmissions == 3) {
-			packetLoss();
+			threeWay();
 		}
 	}
 
@@ -49,4 +49,9 @@ function packetMover(delta) {
 function packetLoss() {
 	stop();
 	alert("Packet lost!");
+}
+
+function threeWay() {
+	stop();
+	alert("Connection Established!");
 }
