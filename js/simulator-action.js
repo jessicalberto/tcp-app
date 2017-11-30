@@ -54,7 +54,7 @@ function packetLoss() {
 function threeWay() {
 	stop();
 	//alert("Connection Established!");
-	var estab = document.createElement('h3');
+	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	document.appendChild(estab);
 	stop();
