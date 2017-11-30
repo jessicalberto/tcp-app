@@ -18,6 +18,11 @@ function makeBorders(width, height) {
 	graphics.lineTo(right, bottom);
 	graphics.endFill();
 
+	// Set Timer End Blocks
+	graphics.drawRect(-3,215,7,7);
+	graphics.drawRect(-3,405,7,7);
+	graphics.drawRect(-3,610,7,7);
+
 	return graphics;
 }
 
