@@ -33,7 +33,10 @@ function packetMover(delta) {
 			&& numTransmissions == 2) {
 			packetLoss();
 		}
-
+		if (flag == "PACKET_LOSS"
+			&& numTransmissions == 3) {
+			packetLoss();
+		}
 	}
 
 	if (numTransmissions == 6) {
