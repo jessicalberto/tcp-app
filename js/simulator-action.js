@@ -33,7 +33,11 @@ function packetMover(delta) {
 			&& numTransmissions == 2) {
 			packetLoss();
 		}
-
+		else if (flag == "ACK_LOSS"
+			&& direction == Receiver
+			&& packets.x >= width * .5
+			&& numTransmissions == 2) {
+			packetLoss();
 
 	}
 
