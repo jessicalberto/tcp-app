@@ -19,9 +19,9 @@ function makeBorders(width, height) {
 	graphics.endFill();
 
 	// Set Timer End Blocks
-	graphics.drawRect(-3,190,7,7);
-	graphics.drawRect(-3,350,7,7);
-	graphics.drawRect(-3,525,7,7);
+	graphics.drawRect(0,185,4,7);
+	graphics.drawRect(0,340,4,7);
+	graphics.drawRect(0,525,4,7);
 
 	return graphics;
 }
@@ -96,7 +96,7 @@ function drawTimeoutBlock(){
 
 	graphics.lineStyle(1, TIMEOUT_BLOCK, 1);
 	graphics.beginFill(TIMEOUT_BLOCK, .5);
-	graphics.drawRect(-3,1,7,7);
+	graphics.drawRect(0,1,4,7);
 
 	container.addChild(graphics)
 	return container;
