@@ -3,6 +3,8 @@ function packetMover(delta) {
 	var deltaX = speed * direction * delta;
 	var deltaY = Math.abs(deltaX * verticalMultiplier);
 
+	timer.y += 0.70; // hardcoded, can be changed later
+
 	if (direction == SENDER && packets.x >= width - 20) {
 
 		direction *= -1;

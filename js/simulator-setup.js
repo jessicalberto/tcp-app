@@ -18,6 +18,11 @@ function makeBorders(width, height) {
 	graphics.lineTo(right, bottom);
 	graphics.endFill();
 
+	// Set Timer End Blocks
+	graphics.drawRect(-3,215,7,7);
+	graphics.drawRect(-3,405,7,7);
+	graphics.drawRect(-3,603,7,7);
+
 	return graphics;
 }
 
@@ -85,6 +90,19 @@ function getPacketRotation(width, height) {
 	return (Math.PI / 2) - angle;
 }
 
+function drawTimeoutBlock(){
+	var container = new PIXI.Container();
+	var graphics = new PIXI.Graphics();
+
+	graphics.lineStyle(1, TIMEOUT_BLOCK, 1);
+	graphics.beginFill(TIMEOUT_BLOCK, .5);
+	graphics.drawRect(-3,1,7,7);
+
+	container.addChild(graphics)
+	return container;
+
+}
+
 function initSimulator(element) {
 
 	// Size the parent element, and then
@@ -100,6 +118,7 @@ function initSimulator(element) {
 
 	senderPackets = getSenderPackets();
 	receiverPackets = getReceiverPackets();
+	timeout = drawTimeoutBlock();
 
 	var packetHeight = senderPackets.height,
 		packetWidth = senderPackets.width;
@@ -115,11 +134,13 @@ function initSimulator(element) {
 	receiverPackets.rotation = -1 * rotation;
 	app.stage.addChild(receiverPackets);
 
+	app.stage.addChild(timeout);
 	// defined in simulator-action.js
 	senderStart = 0,
 	receiverStart = transmissionHeightOffset;
 	verticalMultiplier = rotatedPacketHeight/rotatedPacketWidth;
 	packets = senderPackets;
+	timer = timeout;
 
 	resetPackets();
 }
@@ -130,6 +151,8 @@ function resetPackets() {
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
 	receiverPackets.y = transmissionHeightOffset;
+	timeout.x = 1;
+	timeout.y = 1;
 }
 
 function start() {
