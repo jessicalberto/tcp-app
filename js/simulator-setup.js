@@ -20,8 +20,8 @@ function makeBorders(width, height) {
 
 	// Set Timer End Blocks
 	graphics.drawRect(0, height / 3, 4, 7);
-	graphics.drawRect(0, 2 * height / 3, 4, 7);
-	graphics.drawRect(0, height, 4, 7);
+	graphics.drawRect(0, 13 * height / 20, 4, 7);
+	graphics.drawRect(0, 14 * height / 15, 4, 7);
 
 	return graphics;
 }
