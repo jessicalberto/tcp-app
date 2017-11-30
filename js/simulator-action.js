@@ -53,5 +53,8 @@ function packetLoss() {
 
 function threeWay() {
 	stop();
-	alert("Connection Established!");
+	//alert("Connection Established!");
+	var para = document.createElement("P");                       // Create a <p> element
+	var t = document.createTextNode("This is a paragraph.");      // Create a text node
+	para.appendChild(t);                                          // Append the text to <p>
 }
