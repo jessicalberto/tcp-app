@@ -57,4 +57,6 @@ function threeWay() {
 	var estab = document.createElement('h3');
 	estab.innerHTML = 'Connection Established';
 	document.appendChild(estab);
+	stop();
+	direction = SENDER;
 }
