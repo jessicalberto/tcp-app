@@ -151,6 +151,8 @@ function resetPackets() {
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
 	receiverPackets.y = transmissionHeightOffset;
+	timeout.x = 1;
+	timeout.y = 1;
 }
 
 function start() {
