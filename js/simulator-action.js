@@ -54,9 +54,8 @@ function packetLoss() {
 function threeWay() {
 	stop();
 	//alert("Connection Established!");
+	var established = document.getElementById("established");
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
-	document.appendChild(estab);
-	stop();
-	direction = SENDER;
+	established.appendChild(estab);
 }
