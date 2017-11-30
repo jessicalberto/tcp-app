@@ -19,9 +19,9 @@ function makeBorders(width, height) {
 	graphics.endFill();
 
 	// Set Timer End Blocks
-	graphics.drawRect(-3,215,7,7);
-	graphics.drawRect(-3,405,7,7);
-	graphics.drawRect(-3,603,7,7);
+	graphics.drawRect(-3,190,7,7);
+	graphics.drawRect(-3,350,7,7);
+	graphics.drawRect(-3,525,7,7);
 
 	return graphics;
 }
