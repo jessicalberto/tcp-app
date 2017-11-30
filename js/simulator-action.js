@@ -33,7 +33,7 @@ function packetMover(delta) {
 			&& numTransmissions == 2) {
 			packetLoss();
 		}
-		if (flag == "PACKET_LOSS"
+		if (flag == "3_WAY_HANDSHAKE"
 			&& numTransmissions == 3) {
 			packetLoss();
 		}
