@@ -58,4 +58,5 @@ function threeWay() {
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
+	start();
 }
