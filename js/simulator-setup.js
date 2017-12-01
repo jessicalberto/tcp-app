@@ -96,11 +96,36 @@ function drawTimeoutBlock(){
 
 	graphics.lineStyle(1, TIMEOUT_BLOCK, 1);
 	graphics.beginFill(TIMEOUT_BLOCK, .5);
-	graphics.drawRect(0,1,4,7);
+	graphics.drawRect(0, 20, 4, 7);
 
 	container.addChild(graphics)
 	return container;
 
+}
+
+function drawTimeoutRectangle(width, height) {
+	var container = new PIXI.Container();
+	var graphics = new PIXI.Graphics();
+
+	graphics.lineStyle(1, TIMEOUT_LINE, 1);
+	graphics.beginFill(TIMEOUT_LINE, .5);
+	graphics.drawRect(width * 0.1, 20, width * 0.8, 2);
+
+	container.addChild(graphics)
+
+	var style = new PIXI.TextStyle({
+	    fontFamily: 'Arial',
+	    fontSize: 15,
+	    fontWeight: 'bold',
+	    fill: '#ffffff', 
+	});
+
+	var text = new PIXI.Text('TIMEOUT', style);
+	text.anchor.set(.5, 0);
+	text.x = width * 0.5;
+	text.y = 0;
+
+	return [container, text];
 }
 
 function initSimulator(element) {
@@ -116,9 +141,13 @@ function initSimulator(element) {
 
 	app.stage.addChild( ...makeText(width, height) );
 
+	var timeoutAndText = drawTimeoutRectangle(width, height);
+	timeout = timeoutAndText[0];
+	app.stage.addChild( ...timeoutAndText );
+
 	senderPackets = getSenderPackets();
 	receiverPackets = getReceiverPackets();
-	timeout = drawTimeoutBlock();
+	// timeout = drawTimeoutBlock();
 
 	var packetHeight = senderPackets.height,
 		packetWidth = senderPackets.width;
@@ -134,7 +163,7 @@ function initSimulator(element) {
 	receiverPackets.rotation = -1 * rotation;
 	app.stage.addChild(receiverPackets);
 
-	app.stage.addChild(timeout);
+	// app.stage.addChild(timeout);
 	// defined in simulator-action.js
 	senderStart = 0,
 	receiverStart = transmissionHeightOffset;

@@ -15,13 +15,14 @@ var app = null,
 	transmissionHeightOffset = 0,
 	SENDER = 1,
 	RECEIVER = -1,
+	TIMEOUT_SPEED = 0.002,
 	speed = 5,
 	direction = SENDER,
 	verticalMultiplier = null,
 	senderStart = 0,
 	receiverStart = 0,
 	packets = null,
-  timer = null,
+  	timer = null,
 	numTransmissions = 0
 	flag = null;
 
