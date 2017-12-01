@@ -22,7 +22,7 @@ var app = null,
 	senderStart = 0,
 	receiverStart = 0,
 	packets = null,
-  	timer = null,
+  	timeout = null,
 	numTransmissions = 0
 	flag = null;
 

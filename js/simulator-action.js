@@ -21,8 +21,8 @@ function packetMover(delta) {
 		packets = senderPackets;
 		packets.y = current - 2 * rotatedPacketHeight;
 
-		timer.scale.x = 1; 
-		timer.x = 0;
+		timeout.scale.x = 1; 
+		timeout.x = 0;
 
 		numTransmissions++;
 
@@ -33,8 +33,8 @@ function packetMover(delta) {
 		packets.x += deltaX;
 		packets.y += deltaY;
 
-		timer.scale.x -= delta * TIMEOUT_SPEED; 
-		timer.x += delta * width * TIMEOUT_SPEED/2;
+		timeout.scale.x -= delta * TIMEOUT_SPEED; 
+		timeout.x += delta * width * TIMEOUT_SPEED/2;
 
 		if (flag == "PACKET_LOSS"
 			&& direction == SENDER
