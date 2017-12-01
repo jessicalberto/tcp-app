@@ -136,7 +136,9 @@ function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
 	var established = document.getElementById("established");
-	established.removeChild(established.childNodes[0]);
+	if (established.hasChildNodes()) {
+		established.removeChild(established.childNodes[0]);
+	}
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
 }
