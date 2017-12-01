@@ -27,22 +27,23 @@ function packetMover(delta) {
 		numTransmissions++;
 
 	} else {
+
 		var deltaX = speed * direction * delta;
 		var deltaY = Math.abs(deltaX * verticalMultiplier);
+		var deltaTimeout = delta * TIMEOUT_SPEED;
+
+		if (flag == "PACKET_LOSS" && direction == SENDER
+				&& packets.x >= width * .5 - rotatedPacketWidth/2 && numTransmissions == 2) {
+			packetLoss();
+			deltaX = 0;
+			deltaY = 0;
+		}
 
 		packets.x += deltaX;
 		packets.y += deltaY;
 
-		timeout.scale.x -= delta * TIMEOUT_SPEED; 
-		timeout.x += delta * width * TIMEOUT_SPEED/2;
-
-		if (flag == "PACKET_LOSS"
-			&& direction == SENDER
-			&& packets.x >= width * .5
-			&& numTransmissions == 2) {
-			packetLoss();
-		}
-
+		timeout.scale.x -= deltaTimeout; 
+		timeout.x += width * deltaTimeout/2; // Keeps rectangle centered while shrinking it
 
 	}
 
@@ -54,6 +55,16 @@ function packetMover(delta) {
 
 // TODO do this better!
 function packetLoss() {
-	stop();
-	alert("Packet lost!");
+	if (packets.alpha != 0) {
+		packets.alpha -= .1;
+	}
+	if (timeout.scale.x <= 0) {
+		timeout.scale.x = 1; 
+		timeout.x = 0;
+
+		packets.x = -1 * rotatedPacketWidth - 2;
+		packets.y = height/3;
+		packets.alpha = 1;
+		flag = "NORMAL_OPERATION";
+	}
 }
