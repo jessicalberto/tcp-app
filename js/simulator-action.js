@@ -66,9 +66,10 @@ function packetLoss() {
 		packets.y = height/3;
 		packets.alpha = 1;
 		flag = "NORMAL_OPERATION";
+		var retransmit = document.getElementById("retransmit");
+		var re = document.createElement('H3');
+		re.innerHTML = 'Retransmitting';
+		retransmit.appendChild(re);
 	}
-	var retransmit = document.getElementById("retransmit");
-	var re = document.createElement('H3');
-	re.innerHTML = 'Retransmitting';
-	retransmit.appendChild(re);
+	
 }
