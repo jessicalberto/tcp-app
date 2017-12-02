@@ -64,7 +64,7 @@ function threeWay() {
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
 	packets.x = -1 * rotatedPacketWidth - 2;
-	packets.y = height/3;
+	packets.y = height/2;
 	packets.alpha = 1;
 	flag = "NORMAL_OPERATION";
 	numTransmissions = 2;
