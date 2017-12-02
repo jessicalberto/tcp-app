@@ -126,6 +126,7 @@ function initSimulator(element) {
 
 function resetPackets() {
 	numTransmissions = 0;
+	direction = SENDER;
 	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
