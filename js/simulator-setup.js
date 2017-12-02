@@ -135,6 +135,8 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
+	numTransmissions = 0;
+	direction = SENDER;
 	var established = document.getElementById("established");
 	if (established.hasChildNodes()) {
 		established.removeChild(established.childNodes[0]);
