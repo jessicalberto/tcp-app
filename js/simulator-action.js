@@ -67,7 +67,7 @@ function packetLoss() {
 		packets.alpha = 1;
 		flag = "NORMAL_OPERATION";
 	}
-	var retransmit = document.getElementById("established");
+	var retransmit = document.getElementById("retransmit");
 	var re = document.createElement('H3');
 	re.innerHTML = 'Retransmitting';
 	retransmit.appendChild(re);
