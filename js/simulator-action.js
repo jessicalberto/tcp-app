@@ -54,7 +54,6 @@ function packetLoss() {
 }
 
 function threeWay() {
-	stop();
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
