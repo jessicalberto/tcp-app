@@ -42,10 +42,7 @@ function packetMover(delta) {
 	}
 
 	if (numTransmissions == 6) {
-		var established = document.getElementById("established");
-		var estab = document.createElement('H3');
-		estab.innerHTML = 'Connection SUCK';
-		established.appendChild(estab);
+		numTransmissions = 0;
 		stop();
 		resetPackets();
 	}
