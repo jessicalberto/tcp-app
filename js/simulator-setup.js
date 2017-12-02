@@ -148,5 +148,6 @@ function start() {
 function stop() {
 	resetPackets();
 	app.ticker.remove(packetMover); // Defined in simulator-action.js
+	numTransmissions = 0;
 	document.getElementById("startButton").disabled = false;
 }
