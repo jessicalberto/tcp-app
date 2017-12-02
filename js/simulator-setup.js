@@ -85,6 +85,31 @@ function getPacketRotation(width, height) {
 	return (Math.PI / 2) - angle;
 }
 
+function drawTimeoutRectangle(width, height) {
+	var container = new PIXI.Container();
+	var graphics = new PIXI.Graphics();
+
+	graphics.lineStyle(1, TIMEOUT_LINE, 1);
+	graphics.beginFill(TIMEOUT_LINE, .5);
+	graphics.drawRect(width * 0.1, 20, width * 0.8, 2);
+
+	container.addChild(graphics)
+
+	var style = new PIXI.TextStyle({
+	    fontFamily: 'Arial',
+	    fontSize: 15,
+	    fontWeight: 'bold',
+	    fill: '#ffffff', 
+	});
+
+	var text = new PIXI.Text('TIMEOUT', style);
+	text.anchor.set(.5, 0);
+	text.x = width * 0.5;
+	text.y = 0;
+
+	return [container, text];
+}
+
 function initSimulator(element) {
 
 	// Size the parent element, and then
@@ -95,8 +120,11 @@ function initSimulator(element) {
 	element.parentElement.replaceChild(app.view, element);
 
 	app.stage.addChild( makeBorders(width, height) );
-
 	app.stage.addChild( ...makeText(width, height) );
+
+	var timeoutAndText = drawTimeoutRectangle(width, height);
+	timeout = timeoutAndText[0];
+	app.stage.addChild( ...timeoutAndText );
 
 	senderPackets = getSenderPackets();
 	receiverPackets = getReceiverPackets();
@@ -131,15 +159,19 @@ function resetPackets() {
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
 	receiverPackets.y = transmissionHeightOffset;
+	timeout.x = 1;
+	timeout.y = 1;
 }
 
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
-	numTransmissions = 0;
 	var established = document.getElementById("established");
 	if (established.hasChildNodes()) {
 		established.removeChild(established.childNodes[0]);
+	var retransmit = document.getElementById("retransmit");
+	if (retransmit.hasChildNodes()) {
+		retransmit.removeChild(retransmit.childNodes[0]);
 	}
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
