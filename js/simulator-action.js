@@ -43,6 +43,7 @@ function packetMover(delta) {
 
 	if (numTransmissions == 6) {
 		stop();
+		resetPackets();
 	}
 
 }
