@@ -140,7 +140,6 @@ function start() {
 	if (established.hasChildNodes()) {
 		established.removeChild(established.childNodes[0]);
 	}
-	resetPackets();
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
 }
