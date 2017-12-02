@@ -38,13 +38,14 @@ function packetMover(delta) {
 			deltaX = 0;
 			deltaY = 0;
 		}
+		/*
 		if (flag == "3_WAY_HANDSHAKE"
 			&& numTransmissions == 3) {
 			threeWay();
 			deltaX = 0;
 			deltaY = 0;
 		}
-
+		*/
 		packets.x += deltaX;
 		packets.y += deltaY;
 
@@ -80,7 +81,7 @@ function packetLoss() {
 	}
 	
 }
-
+/*
 function threeWay() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
@@ -96,3 +97,4 @@ function threeWay() {
 	flag = "NORMAL_OPERATION";
 	//numTransmissions = 2;
 }
+*/
