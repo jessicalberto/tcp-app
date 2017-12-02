@@ -21,7 +21,7 @@ function packetMover(delta) {
 		packets = senderPackets;
 		packets.y = current - 2 * rotatedPacketHeight;
 
-		timeout.scale.x = 1; 
+		timeout.scale.x = 1;
 		timeout.x = 0;
 
 		numTransmissions++;
@@ -42,7 +42,7 @@ function packetMover(delta) {
 		packets.x += deltaX;
 		packets.y += deltaY;
 
-		timeout.scale.x -= deltaTimeout; 
+		timeout.scale.x -= deltaTimeout;
 		timeout.x += width * deltaTimeout/2; // Keeps rectangle centered while shrinking it
 
 	}
@@ -59,7 +59,7 @@ function packetLoss() {
 		packets.alpha -= .1;
 	}
 	if (timeout.scale.x <= 0) {
-		timeout.scale.x = 1; 
+		timeout.scale.x = 1;
 		timeout.x = 0;
 
 		packets.x = -1 * rotatedPacketWidth - 2;
@@ -71,5 +71,28 @@ function packetLoss() {
 		re.innerHTML = 'Retransmitting';
 		retransmit.appendChild(re);
 	}
-	
+
+}
+
+var offset = 0;
+var START_X = 0;
+var START_Y = 0;
+
+// Track Packet Movement
+function dashedLine(delta) {
+	var container = new PIXI.Container();
+	var graphics = new PIXI.Graphics();
+
+	graphics.lineStyle(0.3, 0xc0c0c0);
+
+	if (offset % 20 == 0){
+		graphics.moveTo(START_X, START_Y);
+		graphics.lineTo(packets.x, packets.y);
+		START_X = packets.x;
+		START_Y = packets.y;
+	}
+
+	offset+=5;
+	app.stage.addChild(graphics);
+
 }
