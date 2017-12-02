@@ -54,10 +54,10 @@ function packetLoss() {
 }
 
 function threeWay() {
+	stop();
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
-	//stop();
 	//alert("Connection Established!");
 	var established = document.getElementById("established");
 	var estab = document.createElement('H3');
