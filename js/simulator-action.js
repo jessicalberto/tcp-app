@@ -36,6 +36,8 @@ function packetMover(delta) {
 		if (flag == "3_WAY_HANDSHAKE"
 			&& numTransmissions == 3) {
 			threeWay();
+			deltaX = 0;
+			deltaY = 0;
 		}
 	}
 
@@ -52,10 +54,17 @@ function packetLoss() {
 }
 
 function threeWay() {
-	stop();
+	if (packets.alpha != 0) {
+		packets.alpha -= .1;
+	}
+	//stop();
 	//alert("Connection Established!");
 	var established = document.getElementById("established");
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
+	packets.x = -1 * rotatedPacketWidth - 2;
+	packets.y = height/3;
+	packets.alpha = 1;
+	flag = "NORMAL_OPERATION";
 }
