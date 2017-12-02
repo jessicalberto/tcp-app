@@ -165,7 +165,10 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
-
+	var retransmit = document.getElementById("retransmit");
+	if (retransmit.hasChildNodes()) {
+		retransmit.removeChild(retransmit.childNodes[0]);
+	}
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
 }
