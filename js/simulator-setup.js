@@ -99,7 +99,7 @@ function drawTimeoutRectangle(width, height) {
 	    fontFamily: 'Arial',
 	    fontSize: 15,
 	    fontWeight: 'bold',
-	    fill: '#ffffff', 
+	    fill: '#ffffff',
 	});
 
 	var text = new PIXI.Text('TIMEOUT', style);
@@ -176,12 +176,14 @@ function start() {
 		retransmit.removeChild(retransmit.childNodes[0]);
 	}
 	app.ticker.add(packetMover); // Defined in simulator-action.js
+	app.ticker.add(dashedLine); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
 }
 
 function stop() {
 	resetPackets();
 	app.ticker.remove(packetMover); // Defined in simulator-action.js
+	app.ticker.remove(dashedLine); // Defined in simulator-action.js
 	//numTransmissions = 0;
 	document.getElementById("startButton").disabled = false;
 }
