@@ -154,6 +154,7 @@ function initSimulator(element) {
 
 function resetPackets() {
 	numTransmissions = 0;
+	//direction = SENDER;
 	senderPackets.x = -1 * rotatedPacketWidth - 2; // Place at Top left corner of canvas
 	senderPackets.y = (-1 * rotatedPacketHeight) + 25;
 	receiverPackets.x = width + rotatedPacketWidth; // Initialize Off the Grid
@@ -165,6 +166,11 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
+	/*
+	var established = document.getElementById("established");
+	if (established.hasChildNodes()) {
+		established.removeChild(established.childNodes[0]);
+		*/
 	var retransmit = document.getElementById("retransmit");
 	if (retransmit.hasChildNodes()) {
 		retransmit.removeChild(retransmit.childNodes[0]);
@@ -178,5 +184,6 @@ function stop() {
 	resetPackets();
 	app.ticker.remove(packetMover); // Defined in simulator-action.js
 	app.ticker.remove(dashedLine); // Defined in simulator-action.js
+	//numTransmissions = 0;
 	document.getElementById("startButton").disabled = false;
 }

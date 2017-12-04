@@ -168,16 +168,27 @@ body {
     background-color: lightgreen;
 }
 
-#retransmit {
-   color: red;
-	font-weight: normal;
-	font-family: 'Ultra', sans-serif;   
-	font-size: 36px;
-	line-height: 42px;
-	text-transform: uppercase;
-	text-shadow: 0 2px pink, 0 3px #777;
+
+#established {
+   color: GoldenRod;
+   font-weight: normal;
+	 font-family: 'Ultra', sans-serif;   
+	 font-size: 36px;
+	 line-height: 42px;
+	 text-transform: uppercase;
+   text-shadow: 0 2px bisque, 0 3px #777;
 } 
 
+#retransmit {
+   color: red;
+	 font-weight: normal;
+	 font-family: 'Ultra', sans-serif;   
+	 font-size: 36px;
+	 line-height: 42px;
+	 text-transform: uppercase;
+	 text-shadow: 0 2px pink, 0 3px #777;
+}   
+	
 /* ==========================================================================
    Helper classes
    ========================================================================== */
