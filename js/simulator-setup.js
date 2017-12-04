@@ -166,7 +166,6 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
-	app.ticker.remove(dashedLine);
 	/*
 	var established = document.getElementById("established");
 	if (established.hasChildNodes()) {
