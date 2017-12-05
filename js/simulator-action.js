@@ -118,5 +118,5 @@ function threeWay() {
 	packets.y = height/2;
 	packets.alpha = 1;
 	flag = "NORMAL_OPERATION";
-	//numTransmissions = 2;
+	numTransmissions = 2;
 }
