@@ -50,7 +50,6 @@ function packetMover(delta) {
 			&& direction == RECEIVER
 			&& packets.x <= width * .5
 			&& numTransmissions == 1) {
-			direction = SENDER;
 			packetLoss();
 			deltaX = 0;
 			deltaY = 0;
@@ -91,6 +90,7 @@ function packetLoss() {
 	}
 
 }
+
 
 var offset = 0;
 var START_X = 0;
