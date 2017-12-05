@@ -166,15 +166,17 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
-	/*
-	var established = document.getElementById("established");
-	if (established.hasChildNodes()) {
-		established.removeChild(established.childNodes[0]);
-		*/
+	
 	var retransmit = document.getElementById("retransmit");
 	if (retransmit.hasChildNodes()) {
 		retransmit.removeChild(retransmit.childNodes[0]);
 	}
+	retransmit = document.getElementById("established");
+	if (retransmit.hasChildNodes()) {
+		retransmit.removeChild(retransmit.childNodes[0]);
+	}
+	//else if (established.hasChildNodes()) {
+		
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	app.ticker.add(dashedLine); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
