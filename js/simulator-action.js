@@ -91,6 +91,26 @@ function packetLoss() {
 
 }
 
+function ackLoss() {
+	if (packets.alpha != 0) {
+		packets.alpha -= .1;
+	}
+	if (timeout.scale.x <= 0) {
+		timeout.scale.x = 1;
+		timeout.x = 0;
+
+		packets.x = -1 * rotatedPacketWidth - 2;
+		packets.y = height/3;
+		packets.alpha = 1;
+		flag = "NORMAL_OPERATION";
+		numTransmissions = 1;
+		var retransmit = document.getElementById("retransmit");
+		var re = document.createElement('H3');
+		re.innerHTML = 'Retransmitting';
+		retransmit.appendChild(re);
+	}
+
+}
 
 var offset = 0;
 var START_X = 0;
