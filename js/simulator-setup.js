@@ -167,14 +167,15 @@ function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
 	
-	var established = document.getElementById("established");
-	if (established.hasChildNodes()) {
-		established.removeChild(established.childNodes[0]);
-	
 	var retransmit = document.getElementById("retransmit");
-	else if (retransmit.hasChildNodes()) {
+	if (retransmit.hasChildNodes()) {
 		retransmit.removeChild(retransmit.childNodes[0]);
 	}
+	var established = document.getElementById("established");
+	else if (established.hasChildNodes()) {
+		established.removeChild(established.childNodes[0]);
+	
+	
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	app.ticker.add(dashedLine); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
