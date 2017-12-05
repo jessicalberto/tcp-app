@@ -166,9 +166,11 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
+	/*
 	var established = document.getElementById("established");
 	if (established.hasChildNodes()) {
 		established.removeChild(established.childNodes[0]);
+	*/
 	var retransmit = document.getElementById("retransmit");
 	if (retransmit.hasChildNodes()) {
 		retransmit.removeChild(retransmit.childNodes[0]);
