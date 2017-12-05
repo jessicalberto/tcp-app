@@ -168,14 +168,14 @@ function start() {
 	console.log(flag);
 	
 	var retransmit = document.getElementById("retransmit");
-	if (retransmit.hasChildNodes()) {
-		retransmit.removeChild(retransmit.childNodes[0]);
-	}
 	var established = document.getElementById("established");
-	else if (established.hasChildNodes()) {
+	if (retransmit.hasChildNodes() or established.hasChildNodes()) {
+		retransmit.removeChild(retransmit.childNodes[0]);
 		established.removeChild(established.childNodes[0]);
+	}
 	
-	
+	//else if (established.hasChildNodes()) {
+		
 	app.ticker.add(packetMover); // Defined in simulator-action.js
 	app.ticker.add(dashedLine); // Defined in simulator-action.js
 	document.getElementById("startButton").disabled = true;
