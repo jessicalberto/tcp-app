@@ -66,6 +66,12 @@ function packetMover(delta) {
 	if (numTransmissions == 6) {
 		stop();
 		resetPackets();
+		if (flag == "CONNECTION_CLOSE") {
+			var established = document.getElementById("established");
+			var estab = document.createElement('H3');
+			estab.innerHTML = 'Connection Closed';
+			established.appendChild(estab);
+		}
 	}
 
 }
