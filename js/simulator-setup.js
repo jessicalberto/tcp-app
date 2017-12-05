@@ -168,12 +168,13 @@ function start() {
 	console.log(flag);
 	
 	var retransmit = document.getElementById("retransmit");
-	var established = document.getElementById("established");
-	if (retransmit.hasChildNodes() or established.hasChildNodes()) {
+	if (retransmit.hasChildNodes()) {
 		retransmit.removeChild(retransmit.childNodes[0]);
-		established.removeChild(established.childNodes[0]);
 	}
-	
+	retransmit = document.getElementById("established");
+	if (retransmit.hasChildNodes()) {
+		retransmit.removeChild(retransmit.childNodes[0]);
+	}
 	//else if (established.hasChildNodes()) {
 		
 	app.ticker.add(packetMover); // Defined in simulator-action.js
