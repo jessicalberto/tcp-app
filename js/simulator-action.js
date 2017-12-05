@@ -46,6 +46,16 @@ function packetMover(delta) {
 			deltaY = 0;
 		}
 		
+		else if (flag == "ACK_LOSS"
+			&& direction == RECEIVER
+			&& packets.x <= width * .5
+			&& numTransmissions == 1) {
+			direction = SENDER;
+			packetLoss();
+			deltaX = 0;
+			deltaY = 0;
+		}
+		
 		packets.x += deltaX;
 		packets.y += deltaY;
 
