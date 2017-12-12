@@ -2,6 +2,7 @@ function packetMover(delta) {
 	// console.log(verticalMultiplier, senderStart, receiverStart);
 
 	if (direction == SENDER && packets.x >= width - 20) {
+		// Switch from Sender to Receiver
 
 		direction *= -1;
 		packets.x = -1 * rotatedPacketWidth - 2;
@@ -12,7 +13,10 @@ function packetMover(delta) {
 
 		numTransmissions++;
 
+		sendReceiverPacket();
+
 	} else if (direction == RECEIVER && packets.x < -1 * rotatedPacketWidth - 20) {
+		// Switch from Receiver to Sender
 
 		direction *= -1;
 		packets.x = width + rotatedPacketWidth;
@@ -25,6 +29,8 @@ function packetMover(delta) {
 		timeout.x = 0;
 
 		numTransmissions++;
+
+		sendSenderPacket();
 
 	} else {
 
@@ -74,6 +80,34 @@ function packetMover(delta) {
 		}
 	}
 
+}
+
+function updatePacket(newInfo) {
+	var keys = Object.keys(newInfo);
+	for (var i = 0; i < keys.length; i++) {
+		var key = keys[i];
+		packet[key].innerHTML = newInfo[key];
+	}
+}
+
+function sendInitialPacket() {
+	if (flag == "NORMAL_OPERATION") {
+		updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' });
+	}
+}
+
+function sendSenderPacket() {
+	if (flag == "NORMAL_OPERATION") {
+		var seq = Math.floor(numTransmissions/2)
+		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
+	}
+}
+
+function sendReceiverPacket() {
+	if (flag == "NORMAL_OPERATION") {
+		var seq = Math.floor(numTransmissions/2)
+		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
+	}
 }
 
 // TODO do this better!

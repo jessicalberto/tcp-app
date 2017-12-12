@@ -5,6 +5,15 @@ var w = window,
     WIDTH = w.innerWidth || e.clientWidth || g.clientWidth,
     HEIGHT = w.innerHeight|| e.clientHeight|| g.clientHeight;
 
+var packet = {
+	"SYN": document.getElementById('SYN_val'),
+	"FIN": document.getElementById('FIN_val'),
+	"SEQ": document.getElementById('SEQ_val'),
+	"ACK": document.getElementById('ACK_val'),
+	"CWND": document.getElementById('CWND_val'),
+	"DATA": document.getElementById('DATA_val'),
+}
+
 var app = null,
 	width = null,
 	height = null,

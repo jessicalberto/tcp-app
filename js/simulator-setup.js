@@ -166,6 +166,8 @@ function resetPackets() {
 function start() {
 	flag = document.getElementsByName("flag")[0].value;
 	console.log(flag);
+
+	sendInitialPacket();
 	
 	var retransmit = document.getElementById("retransmit");
 	if (retransmit.hasChildNodes()) {
