@@ -123,14 +123,44 @@ body {
 }
 
 #options-box {
-    height: 80vh;
+    height: 68vh;
     width: 100%;
     border: solid orange 2px;
     display: table;
 }
+
 #options-box > div {
     display: table-cell;
     vertical-align: middle;
+}
+
+#packet-info-box {
+    margin-top: 2vh;
+    height: 15vh;
+    min-height: 100px;
+    width: 100%;
+}
+
+#packet-info-box table {
+    width: 100%;
+}
+
+#packet-info-box tr {
+    width: 100%;
+}
+
+#packet-info-box tr:first-child td {
+    font-family: "Courier New", Courier, monospace
+}
+
+#packet-info-box td {
+    width: 20%;
+    border: solid 2px green;
+    vertical-align: middle;
+}
+
+#packet-info-box p {
+    margin-bottom: 0;
 }
 
 #display-options {
