@@ -35,6 +35,7 @@ var app = null,
 	numTransmissions = 0
 	flag = null;
 	isEstablished = false;
+	extraSeq = false;
 
 var simulationBox = document.getElementById("simulation-box");
 initSimulator(simulationBox);
