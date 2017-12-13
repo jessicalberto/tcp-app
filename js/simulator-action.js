@@ -100,7 +100,7 @@ function sendInitialPacket() {
 
 function sendSenderPacket() {
 	var seq = Math.floor(numTransmissions/2)
-	if (flag == "3_WAY_HANDSHAKE"
+	if (flag == "NORMAL_OPERATION"
 	   && numTransmissions == 2
 	   && isEstablished == True) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
@@ -193,6 +193,7 @@ function threeWay() {
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
+	isEstablished = true;
 	packets.x = -1 * rotatedPacketWidth - 2;
 	packets.y = height/2;
 	packets.alpha = 1;
