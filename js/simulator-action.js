@@ -108,7 +108,8 @@ function sendSenderPacket() {
 		isEstablished = false;
 		extraSeq = true;
 	}
-	else if (lessSeq == true) {
+	else if (flag == "NORMAL_OPERATION"
+		&& lessSeq == true) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq - 1, "ACK": 79 + seq - 1, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq - 1)});
 	}
 	else if (extraSeq == true) {
@@ -121,7 +122,8 @@ function sendSenderPacket() {
 
 function sendReceiverPacket() {
 	var seq = Math.floor(numTransmissions/2)
-	if (lessSeq == true) {
+	if (flag == "NORMAL_OPERATION"
+	    && lessSeq == true) {
 		updatePacket({"SYN": 0, "SEQ":79 + seq - 1, "ACK": 42 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
 	}
 	else {	
