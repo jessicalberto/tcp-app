@@ -106,9 +106,9 @@ function sendSenderPacket() {
 		isEstablished = false;
 	}
 		
-	//else {
+	else {
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
-	//}
+	}
 }
 
 function sendReceiverPacket() {
