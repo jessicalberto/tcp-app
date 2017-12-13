@@ -91,16 +91,14 @@ function updatePacket(newInfo) {
 }
 
 function sendInitialPacket() {
-	if (flag == "NORMAL_OPERATION") {
-		updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' });
-	}
+	updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' , "CWND": 10 });
 }
 
 function sendSenderPacket() {
-	if (flag == "NORMAL_OPERATION") {
+	//if (flag == "NORMAL_OPERATION") {
 		var seq = Math.floor(numTransmissions/2)
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
-	}
+	//}
 }
 
 function sendReceiverPacket() {
