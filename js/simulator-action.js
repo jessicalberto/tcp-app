@@ -184,6 +184,7 @@ function threeWay() {
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
+	isEstablished = true;
 	packets.x = -1 * rotatedPacketWidth - 2;
 	packets.y = height/2;
 	packets.alpha = 1;
