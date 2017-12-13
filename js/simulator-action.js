@@ -124,7 +124,7 @@ function sendReceiverPacket() {
 	var seq = Math.floor(numTransmissions/2)
 	if (flag == "NORMAL_OPERATION"
 	    && lessSeq == true) {
-		updatePacket({"SYN": 0, "SEQ":79 + seq - 1, "ACK": 42 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
+		updatePacket({"SYN": 0, "SEQ":79 + seq - 1, "ACK": 42 + seq, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq + 1)});
 	}
 	else {	
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
