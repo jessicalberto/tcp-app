@@ -149,7 +149,9 @@ function packetLoss() {
 		var re = document.createElement('H3');
 		re.innerHTML = 'Retransmitting';
 		retransmit.appendChild(re);
-		lessSeq = true;
+		if (direction != SENDER) {
+			lessSeq = true;
+		}
 	}
 
 }
