@@ -34,6 +34,7 @@ var app = null,
   	timeout = null,
 	numTransmissions = 0
 	flag = null;
+	isEstablished = false;
 
 var simulationBox = document.getElementById("simulation-box");
 initSimulator(simulationBox);
