@@ -75,6 +75,8 @@ function packetMover(delta) {
 	if (numTransmissions == 6) {
 		stop();
 		resetPackets();
+		extraSeq = false;
+		lessSeq = false;
 		if (flag == "CONNECTION_CLOSE") {
 			var established = document.getElementById("established");
 			var estab = document.createElement('H3');
@@ -94,21 +96,44 @@ function updatePacket(newInfo) {
 }
 
 function sendInitialPacket() {
-	if (flag == "NORMAL_OPERATION") {
-		updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' });
+	updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' , "CWND": 10 });
+	if (flag == "3_WAY_HANDSHAKE"
+	   && numTransmissions == 0) {
+		updatePacket({"SYN": 1});
 	}
 }
 
 function sendSenderPacket() {
-	if (flag == "NORMAL_OPERATION") {
-		var seq = Math.floor(numTransmissions/2)
+	var seq = Math.floor(numTransmissions/2)
+	if (flag == "NORMAL_OPERATION"
+	   && isEstablished == true) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
+		isEstablished = false;
+		extraSeq = true;
+	}
+	else if (flag == "NORMAL_OPERATION"
+		&& lessSeq == true) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq - 1, "ACK": 79 + seq - 1, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq - 1)});
+	}
+	else if (flag == "CONNECTION_CLOSE"
+		&& numTransmissions == 2) {
+		updatePacket({ "FIN": 1, "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
+	}
+	else if (extraSeq == true) {
+		updatePacket({ "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1) } );
+	}
+	else {
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
 	}
 }
 
 function sendReceiverPacket() {
-	if (flag == "NORMAL_OPERATION") {
-		var seq = Math.floor(numTransmissions/2)
+	var seq = Math.floor(numTransmissions/2)
+	if (flag == "NORMAL_OPERATION"
+	    && lessSeq == true) {
+		updatePacket({"SYN": 0, "SEQ":79 + seq - 1, "ACK": 42 + seq, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq + 1)});
+	}
+	else {	
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
 	}
 }
@@ -118,6 +143,7 @@ function packetLoss() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
+	
 	if (timeout.scale.x <= 0) {
 		timeout.scale.x = 1;
 		timeout.x = 0;
@@ -130,6 +156,9 @@ function packetLoss() {
 		var re = document.createElement('H3');
 		re.innerHTML = 'Retransmitting';
 		retransmit.appendChild(re);
+		if (direction != SENDER) {
+			lessSeq = true;
+		}
 	}
 
 }
