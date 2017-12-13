@@ -101,7 +101,7 @@ function sendInitialPacket() {
 function sendSenderPacket() {
 	var seq = Math.floor(numTransmissions/2)
 	if (flag == "3_WAY_HANDSHAKE"
-	   && numTransmissions == 2
+	   && numTransmissions == 3
 	   && packets.y >= height/2) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
 	}
