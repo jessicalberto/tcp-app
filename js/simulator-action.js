@@ -133,7 +133,7 @@ function packetLoss() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
-	if (direction == SENDER) {
+	if (direction == RECEIVER) {
 		lessSeq = True;
 	}
 	if (timeout.scale.x <= 0) {
