@@ -21,7 +21,7 @@ and also utilizes Sequence / ACK numbers.
 # How to Deploy
 1) Clone/download this repo onto your desktop.
 2) cd into the main tcp-app directory via Finder or CLI
-3) Open the file 'index.html' in your preferred internet browser.
+3) Open the file `index.html` in your preferred internet browser.
 
 # Reference Slide
 
