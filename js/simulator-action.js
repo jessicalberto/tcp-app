@@ -133,9 +133,7 @@ function packetLoss() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
-	if (direction == RECEIVER) {
-		lessSeq = True;
-	}
+	
 	if (timeout.scale.x <= 0) {
 		timeout.scale.x = 1;
 		timeout.x = 0;
@@ -148,6 +146,9 @@ function packetLoss() {
 		var re = document.createElement('H3');
 		re.innerHTML = 'Retransmitting';
 		retransmit.appendChild(re);
+		if (direction == RECEIVER) {
+			lessSeq = True;
+		}
 	}
 
 }
