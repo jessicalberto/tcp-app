@@ -95,15 +95,24 @@ function sendInitialPacket() {
 }
 
 function sendSenderPacket() {
-	//if (flag == "NORMAL_OPERATION") {
-		var seq = Math.floor(numTransmissions/2)
+	var seq = Math.floor(numTransmissions/2)
+	if (flag == "3_WAY_HANDSHAKE"
+	   && numTransmissions == 0) {
+		updatePacket({"SYN": 1});
+	}
+		
+	else {
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
-	//}
+	}
 }
 
 function sendReceiverPacket() {
-	if (flag == "NORMAL_OPERATION") {
-		var seq = Math.floor(numTransmissions/2)
+	var seq = Math.floor(numTransmissions/2)
+	if (flag == "3_WAY_HANDSHAKE"
+	   && numTransmissions == 3) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq)});
+	}
+	else {	
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
 	}
 }
