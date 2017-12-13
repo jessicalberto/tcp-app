@@ -56,7 +56,6 @@ function packetMover(delta) {
 			&& direction == RECEIVER
 			&& packets.x <= width * .5
 			&& numTransmissions == 1) {
-			lessSeq = True;
 			packetLoss();
 			deltaX = 0;
 			deltaY = 0;
@@ -133,6 +132,9 @@ function sendReceiverPacket() {
 function packetLoss() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
+	}
+	if (direction == SENDER) {
+		lessSeq = True;
 	}
 	if (timeout.scale.x <= 0) {
 		timeout.scale.x = 1;
