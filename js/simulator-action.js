@@ -107,6 +107,9 @@ function sendSenderPacket() {
 		isEstablished = false;
 		extraSeq = true;
 	}
+	else if (lessSeq == true) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq - 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq - 1)});
+	}
 	else if (extraSeq = true) {
 		updatePacket({ "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1) } );
 	}
@@ -117,10 +120,12 @@ function sendSenderPacket() {
 
 function sendReceiverPacket() {
 	var seq = Math.floor(numTransmissions/2)
-	
-	//else {	
+	if (lessSeq == true) {
+		updatePacket({"SYN": 0, "SEQ":79 + seq, "ACK": 42 + seq - 1, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq - 1)});
+	}
+	else {	
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
-	//}
+	}
 }
 
 // TODO do this better!
