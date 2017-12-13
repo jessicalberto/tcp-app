@@ -101,9 +101,9 @@ function sendInitialPacket() {
 function sendSenderPacket() {
 	var seq = Math.floor(numTransmissions/2)
 	if (flag == "NORMAL_OPERATION"
-	   && numTransmissions == 2
-	   && isEstablished == True) {
+	   && isEstablished == true) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
+		isEstablished = false;
 	}
 		
 	//else {
