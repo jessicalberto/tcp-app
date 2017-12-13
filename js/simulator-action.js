@@ -72,6 +72,7 @@ function packetMover(delta) {
 	if (numTransmissions == 6) {
 		stop();
 		resetPackets();
+		extraSeq = false;
 		if (flag == "CONNECTION_CLOSE") {
 			var established = document.getElementById("established");
 			var estab = document.createElement('H3');
@@ -104,8 +105,11 @@ function sendSenderPacket() {
 	   && isEstablished == true) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
 		isEstablished = false;
+		extraSeq = true;
 	}
-		
+	else if (extraSeq = true) {
+		updatePacket({ "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1) } );
+	}
 	else {
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
 	}
