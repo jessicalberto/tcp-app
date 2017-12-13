@@ -112,6 +112,10 @@ function sendSenderPacket() {
 		&& lessSeq == true) {
 		updatePacket({"SYN": 0, "SEQ":42 + seq - 1, "ACK": 79 + seq - 1, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq - 1)});
 	}
+	else if (flag == "CONNECTION_CLOSE"
+		&& numTransmissions == 2) {
+		updatePacket({ "FIN": 1, "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
+	}
 	else if (extraSeq == true) {
 		updatePacket({ "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1) } );
 	}
