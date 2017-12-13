@@ -92,13 +92,17 @@ function updatePacket(newInfo) {
 
 function sendInitialPacket() {
 	updatePacket({ "SEQ": 42, "ACK": 79, "DATA": 'A' , "CWND": 10 });
+	if (flag == "3_WAY_HANDSHAKE"
+	   && numTransmissions == 0) {
+		updatePacket({"SYN": 1});
+	}
 }
 
 function sendSenderPacket() {
 	var seq = Math.floor(numTransmissions/2)
 	if (flag == "3_WAY_HANDSHAKE"
-	   && numTransmissions == 0) {
-		updatePacket({"SYN": 1});
+	   && numTransmissions == 3) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq)});
 	}
 		
 	else {
