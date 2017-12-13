@@ -100,7 +100,11 @@ function sendInitialPacket() {
 
 function sendSenderPacket() {
 	var seq = Math.floor(numTransmissions/2)
-	
+	if (flag == "3_WAY_HANDSHAKE"
+	   && numTransmissions == 2
+	   && packets.x < width/2) {
+		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
+	}
 		
 	//else {
 		updatePacket({ "SEQ":42 + seq, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq) });
@@ -109,13 +113,10 @@ function sendSenderPacket() {
 
 function sendReceiverPacket() {
 	var seq = Math.floor(numTransmissions/2)
-	if (flag == "3_WAY_HANDSHAKE"
-	   && numTransmissions == 3) {
-		updatePacket({"SYN": 0, "SEQ":42 + seq + 1, "ACK": 79 + seq, "DATA": String.fromCharCode('A'.charCodeAt(0) + seq + 1)});
-	}
-	else {	
+	
+	//else {	
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
-	}
+	//}
 }
 
 // TODO do this better!
