@@ -1,3 +1,5 @@
+var resetLine = 0;
+
 function packetMover(delta) {
 	// console.log(verticalMultiplier, senderStart, receiverStart);
 
@@ -44,23 +46,24 @@ function packetMover(delta) {
 			deltaX = 0;
 			deltaY = 0;
 		}
-		
+
 		else if (flag == "3_WAY_HANDSHAKE"
 			&& numTransmissions == 3) {
 			threeWay();
 			deltaX = 0;
 			deltaY = 0;
 		}
-		
+
 		else if (flag == "ACK_LOSS"
 			&& direction == RECEIVER
 			&& packets.x <= width * .5
 			&& numTransmissions == 1) {
 			packetLoss();
+			resetLine = 1;
 			deltaX = 0;
 			deltaY = 0;
 		}
-		
+
 		packets.x += deltaX;
 		packets.y += deltaY;
 
@@ -161,16 +164,22 @@ function dashedLine(delta) {
 	var container = new PIXI.Container();
 	var graphics = new PIXI.Graphics();
 
-	graphics.lineStyle(0.3, 0xc0c0c0);
+	graphics.lineStyle(0.2, 0xffffff);
 
-	if (offset % 20 == 0){
-		graphics.moveTo(START_X, START_Y);
-		graphics.lineTo(packets.x, packets.y);
-		START_X = packets.x;
-		START_Y = packets.y;
+	// Occurs after ACK or Packet loss flag is indicated
+	if (resetLine == 1){
+		resetLine = 0;
 	}
 
-	offset+=5;
+	if (offset % 10 == 0 && resetLine == 0){
+		graphics.moveTo(START_X, START_Y);
+		graphics.lineTo(packets.x, packets.y);
+	}
+
+	START_X = packets.x;
+	START_Y = packets.y;
+
+	offset += 5;
 	app.stage.addChild(graphics);
 
 }
