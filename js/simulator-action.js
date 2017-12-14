@@ -111,6 +111,9 @@ function sendInitialPacket() {
 	   && numTransmissions == 0) {
 		updatePacket({"SYN": 1});
 	}
+	else if (flag == "CONNECTION_CLOSE") {
+		updatePacket({"FIN": 1});
+	}
 }
 
 function sendSenderPacket() {
