@@ -228,6 +228,9 @@ function dashedLine(delta) {
 }
 
 function threeWay() {
+	timeout.scale.x = 1;
+	timeout.x = 0;
+
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
@@ -248,6 +251,9 @@ function threeWay() {
 }
 
 function close() {
+	timeout.scale.x = 1;
+	timeout.x = 0;
+	
 	stop();
 	resetPackets();
 	var established = document.getElementById("established");
