@@ -69,6 +69,7 @@ function packetMover(delta) {
 			numTransmissions = 1;
 			direction = RECEIVER;
 			packets.y = height/2;
+			resetLine = 1;
 			deltaX = 0;
 			deltaY = 0;
 		}
@@ -213,9 +214,11 @@ function dashedLine(delta) {
 		resetLine = 0;
 	}
 
-	if (offset % 10 == 0 && resetLine == 0){
+
+	else if (offset % 20 == 0 && resetLine == 0){
 		graphics.moveTo(START_X, START_Y);
 		graphics.lineTo(packets.x, packets.y);
+
 	}
 
 	START_X = packets.x;
