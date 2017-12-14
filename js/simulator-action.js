@@ -63,6 +63,19 @@ function packetMover(delta) {
 			deltaX = 0;
 			deltaY = 0;
 		}
+		
+		else if (flag == "CONNECTION_CLOSE"
+			&& numTransmissions == 2) {
+			direction = RECEIVER;
+			resetLine = 1;
+			deltaX = 0;
+			deltaY = 0;
+		}
+		
+		else if (flag == "CONNECTION_CLOSE"
+			&& numTransmissions == 4) {
+			close();
+		}
 
 		packets.x += deltaX;
 		packets.y += deltaY;
@@ -77,12 +90,7 @@ function packetMover(delta) {
 		resetPackets();
 		extraSeq = false;
 		lessSeq = false;
-		if (flag == "CONNECTION_CLOSE") {
-			var established = document.getElementById("established");
-			var estab = document.createElement('H3');
-			estab.innerHTML = 'Connection Closed';
-			established.appendChild(estab);
-		}
+		
 	}
 
 }
@@ -231,4 +239,13 @@ function threeWay() {
 	flag = "NORMAL_OPERATION";
 	numTransmissions = 2;
 	*/
+}
+
+function close() {
+	stop();
+	resetPackets();
+	var established = document.getElementById("established");
+	var estab = document.createElement('H3');
+	estab.innerHTML = 'Connection Closed';
+	established.appendChild(estab);
 }
