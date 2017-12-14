@@ -75,7 +75,7 @@ function packetMover(delta) {
 		}
 		
 		else if (flag == "CONNECTION_CLOSE"
-			&& numTransmissions == 4) {
+			&& numTransmissions == 5) {
 			close();
 		}
 
