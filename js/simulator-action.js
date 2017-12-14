@@ -69,7 +69,7 @@ function packetMover(delta) {
 			numTransmissions = 1;
 			direction = RECEIVER;
 			packets.y = height/2;
-			resetLine = 1;
+			resetLine = 30;
 			deltaX = 0;
 			deltaY = 0;
 		}
@@ -210,17 +210,15 @@ function dashedLine(delta) {
 	graphics.lineStyle(0.2, 0xffffff);
 
 	// Occurs after ACK or Packet loss flag is indicated
-	if (resetLine == 1){
-		resetLine = 0;
+	if (resetLine > 0){
+		resetLine--;
 	}
-
 
 	else if (offset % 20 == 0 && resetLine == 0){
 		graphics.moveTo(START_X, START_Y);
 		graphics.lineTo(packets.x, packets.y);
 
 	}
-
 	START_X = packets.x;
 	START_Y = packets.y;
 
@@ -238,7 +236,7 @@ function threeWay() {
 	var estab = document.createElement('H3');
 	estab.innerHTML = 'Connection Established';
 	established.appendChild(estab);
-	stop();
+	//stop();
 	/*
 	isEstablished = true;
 	packets.x = -1 * rotatedPacketWidth - 2;
