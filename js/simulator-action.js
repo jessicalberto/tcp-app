@@ -63,17 +63,16 @@ function packetMover(delta) {
 			deltaX = 0;
 			deltaY = 0;
 		}
-		
+
 		else if (flag == "CONNECTION_CLOSE"
 			&& numTransmissions == 2) {
 			numTransmissions = 1;
 			direction = RECEIVER;
 			packets.y = height/2;
-			resetLine = 1;
 			deltaX = 0;
 			deltaY = 0;
 		}
-		
+
 		else if (flag == "CONNECTION_CLOSE"
 			&& numTransmissions == 5) {
 			close();
@@ -92,7 +91,7 @@ function packetMover(delta) {
 		resetPackets();
 		extraSeq = false;
 		lessSeq = false;
-		
+
 	}
 
 }
@@ -147,7 +146,7 @@ function sendReceiverPacket() {
 	    && lessSeq == true) {
 		updatePacket({"SYN": 0, "SEQ":79 + seq - 1, "ACK": 42 + seq, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq + 1)});
 	}
-	else {	
+	else {
 		updatePacket({ "SEQ": 79 + seq, "ACK": 42 + seq + 1, "DATA": String.fromCharCode('Z'.charCodeAt(0) - seq) });
 	}
 }
@@ -157,7 +156,7 @@ function packetLoss() {
 	if (packets.alpha != 0) {
 		packets.alpha -= .1;
 	}
-	
+
 	if (timeout.scale.x <= 0) {
 		timeout.scale.x = 1;
 		timeout.x = 0;
