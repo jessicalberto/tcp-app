@@ -5,14 +5,14 @@ Fall 2017
 
 This animation illustrates interaction between a sender and receiver using TCP. Based off diagrams and demonstrations discussed in class, we create a visual and interactive learning tool that animates sender-receiver behavior using TCP protocol.
 
-![alt text](http://i347.photobucket.com/albums/p449/shawtyjesshhicuhh/Screen%20Shot%202017-12-12%20at%206.53.37%20PM_zpsgg670kk1.png)
+![alt text](http://i347.photobucket.com/albums/p449/shawtyjesshhicuhh/Screen%20Shot%202017-12-13%20at%209.43.12%20PM_zpspstunfac.png)
 
 # Features
 Our animation demonstrates the following:
 
-1. Packet Loss
-2. ACK Loss
-3. Congestion Control
+1. Normal Operation
+2. Packet Loss
+3. ACK Loss
 4. 3-Way Handshake
 5. Connection Close
 
