@@ -66,7 +66,7 @@ function packetMover(delta) {
 		
 		else if (flag == "CONNECTION_CLOSE"
 			&& numTransmissions == 2) {
-			packets.x = width - 20;
+			numTransmissions = 1;
 			direction = RECEIVER;
 			resetLine = 1;
 			deltaX = 0;
